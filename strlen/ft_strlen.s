@@ -12,9 +12,9 @@ section __DATA,__data
 
 section __TEXT,__text
 _ft_strlen:
-	push rbp			; create stack frame??
-	mov rbp, rsp		; setting up stack idk what the fuck this does
-	sub rsp, 16			; setting up stack idk what the fuck this does 
+	; push rbp			; push rbp (base pointer) so that it can be returned at the end of stack frame (setting up stack frame)
+	; mov rbp, rsp		; move rsp to rbp (stack pointer) the current stack position to rbp which is the base of the stack
+	; sub rsp, 16			; grows the stack by 16 bytes/hex (not sure which) for any variables being used
 
 	mov rax, 0			; mov 0 to increament counter	
 
@@ -27,7 +27,7 @@ loop_head:
 	jmp loop_head		; jump to loop_start
 
 return:
-	add rsp, 16			; clearing up stack idk what the fuck this does
-	pop rbp             ; restore the base pointer??
+	; add rsp, 16			; lowers the stack by 16 bytes/hex (not sure which) for any variables that were used
+	; pop rbp             ; pop rbp pack so that it is back at the start of the stack frame
 
 	ret					; return to function call
