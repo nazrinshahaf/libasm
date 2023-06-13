@@ -35,8 +35,9 @@ void test_ft_strcpy()
 		char dst[3];
 		char dst2[3];
 		/* ft_strcpy(dst, src); */
-		strcpy(dst2, src);
-		printf("src = [%s]\n", src);
+		printf("src b4 = [%s]\n", src);
+		ft_strcpy(dst2, src);
+		printf("src af = [%s]\n", src);
 		printf("dst = [%s]\n", dst);
 		printf("dst2 = [%s]\n", dst2);
 		/* printf("%s\n", strcpy(src, src)); */
