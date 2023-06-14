@@ -33,6 +33,7 @@ set_error:
 	call ___error			; call the ___error function which returns a pointer to the position of the errno flag*
 
 	mov [rax], r8			; dereference [errno] and set the return value of read in r8 into the address that errno is stored at
+	mov rax, -1				; set return value of ft_read to -1
 
 	add rsp, 16				; lowers the stack by 16 bytes for any variables that were used
 	pop rbp             	; pop rbp pack so that it is back at the start of the stack frame

@@ -17,14 +17,14 @@ int main()
 		char buff[1024] = {0};
 		char buff2[1024] = {0};
 	
-		read(fd, buff, 100);
-		printf("real = [%s]\nreal errno = %d\n", buff, errno);
+		int ret = read(fd, buff, 100);
+		printf("real = [%s]\nreal errno = %d\nret = %d\n", buff, errno, ret);
 		errno = 0;
 	
 		printf("--------------------------------------\n");
 	
-		ft_read(fd2, buff2, 100);
-		printf("mine = [%s]\nmy errno = %d\n", buff2, errno);
+		int ret2 = ft_read(fd2, buff2, 100);
+		printf("mine = [%s]\nreal errno = %d\nret = %d\n", buff2, errno, ret2);
 		close(fd);
 		close(fd2);
 	}
@@ -38,14 +38,14 @@ int main()
 		char buff[1024] = {0};
 		char buff2[1024] = {0};
 	
-		read(-100, buff, 100);
-		printf("real = [%s]\nreal errno = %d\n", buff, errno);
+		int ret = read(-100, buff, 100);
+		printf("real = [%s]\nreal errno = %d\nret = %d\n", buff, errno, ret);
 		errno = 0;
 	
 		printf("--------------------------------------\n");
 	
-		ft_read(-100, buff2, 100);
-		printf("mine = [%s]\nmy errno = %d\n", buff2, errno);
+		int ret2 = ft_read(-100, buff2, 100);
+		printf("mine = [%s]\nreal errno = %d\nret = %d\n", buff2, errno, ret2);
 		close(fd);
 		close(fd2);
 	}
@@ -58,14 +58,14 @@ int main()
 		char buff[1024] = {0};
 		char buff2[1024] = {0};
 	
-		read(fd, buff, 100);
-		printf("real = [%s]\nreal errno = %d\n", buff, errno);
+		int ret = read(fd, buff, 100);
+		printf("real = [%s]\nreal errno = %d\nret = %d\n", buff, errno, ret);
 		errno = 0;
 	
 		printf("--------------------------------------\n");
 	
-		ft_read(fd2, buff2, 100);
-		printf("mine = [%s]\nmy errno = %d\n", buff2, errno);
+		int ret2 = ft_read(fd2, buff2, 100);
+		printf("mine = [%s]\nreal errno = %d\nret = %d\n", buff2, errno, ret2);
 		close(fd);
 		close(fd2);
 	}
