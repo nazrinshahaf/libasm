@@ -8,8 +8,27 @@ extern char *ft_strdup(const char *s1);
 
 int main()
 {
-	char *test = ft_strdup("");
-	printf("%s\n", test);
-	free(test);
+	errno = 0;
+	{
+		char *test = ft_strdup("test");
+		if (test == NULL) {
+			printf("malloc error\n");
+			printf("%d\n", errno);
+			goto skip;
+		}
+		printf("%s\n", test);
+		free(test);
+	}
+skip:
+	errno = 0;
+	{
+		char *test = strdup("test");
+		if (test == NULL) {
+			printf("malloc error\n");
+			printf("%d\n", errno);
+		}
+		printf("%s\n", test);
+		free(test);
+	}
 	return 0;
 }

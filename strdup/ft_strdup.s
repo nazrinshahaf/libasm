@@ -28,14 +28,11 @@ _ft_strdup:
 
 	call _ft_strlen			; call to strlen string is already in rdi register
 	mov rdi, rax			; move length of string to rdi register
-	; mov r14, rdi			; move length of string to r14 (malloc touches a lot of registers idk why) (not used)
 	add rdi, 1				; add 1 to rdi for null terminator length
 
 	call _malloc			; call to malloc length of string already in rdi register
-	jc set_error			; if call to malloc returns error jump to
-	; check err here
-
-	; mov r13, rax			; move the address that was malloced to r13 (not used)
+	cmp rax, 0x0			; if malloc returns error it returns pointer to NULL
+	je error_return			; if call to malloc returns error jump to errro_return *
 
 	mov rdi, rax			; move address to be written to to rdi
 	mov rsi, r12			; move string to copy to rsi
@@ -45,20 +42,11 @@ _ft_strdup:
 	pop rbp					; pop rbp pack so that it is back at the start of the stack frame
 	ret						; return to function call
 
-set_error:
-	mov r8, rax				; save the original error value that was returned from malloc
-	call ___error			; call the ___error function which returns a pointer to the position of the errno flag*
-
-	mov [rax], r8			; dereference [errno] and set the return value of malloc in r8 into the address that errno is stored at
-	mov rax, -1				; set return value of ft_strdup to -1
-
+error_return:
 	add rsp, 16				; lowers the stack by 16 bytes for any variables that were used
 	pop rbp             	; pop rbp pack so that it is back at the start of the stack frame
 	ret						; return to function call
 
-; * In C we use the errno global variable to set the errno of any errors that a function might have.
-;	The actuall implementation of ___error and errno_location is hard to find without finding other 42
-;	students stackoverflow questions. But the actual implementation looks like this.
-;	extern int * __error(void);
-;	You can find it if u go into errno.h
-;	It returns a pointer the the memory address when errno is at.
+;	* If scenenario where malloc returns error, it will set errno to appropriate error
+;	so I dont have to do it. I just have to ensure that I compare rax to NULL and
+;	return early
