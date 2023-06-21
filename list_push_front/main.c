@@ -81,27 +81,23 @@ int main()
 		int k = 30;
 		int l = 40;
 		t_list *start = ft_list_new(&i);
-		/* t_list *empty = NULL; */
-
-		printf("%d\n", *((int*)start->data));
-		ft_list_push_front(&start, &j);
-		printf("%p\n", start);
-		ft_list_push_front(&start, &k);
-		printf("%p\n", start);
-
-		/* ft_list_push_front(&empty, &l); */
-		/* printf("%p\n", empty); */
-
-		/* t_list *il = empty; */
-		/* for (int z = 0; z < 5; z++) { */
-		/* 	printf("%d\n", *((int*)il->data)); */
-		/* 	if (il->next == NULL) */
-		/* 		break; */
-		/* 	il = il->next; */
-		/* 	printf("%p\n", il); */
-		/* } */
-		/* printf("%p\n", il); */
+		t_list *empty = NULL;
+	
+		ft_list_push_front(&empty, &j);
+		ft_list_push_front(&empty, &k);
+		ft_list_push_front(&empty, &l);
+	
+		t_list *il = empty;
+		for (int z = 0; z < 5; z++) {
+			printf("%d\n", *((int*)il->data));
+			if (il->next == NULL)
+				break;
+			il = il->next;
+			printf("%p\n", il);
+		}
+		printf("%p\n", il);
 	}
+
 	/* { */
 	/* 	int i = 10; */
 	/* 	int j = 20; */
