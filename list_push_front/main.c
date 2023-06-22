@@ -80,8 +80,10 @@ int main()
 		int j = 20;
 		int k = 30;
 		int l = 40;
-		t_list *start = ft_list_new(&i);
+		/* t_list *start = ft_list_new(&i); */
 		t_list *empty = NULL;
+
+		ft_list_push_front(&empty, &i);
 	
 		ft_list_push_front(&empty, &j);
 		ft_list_push_front(&empty, &k);

@@ -37,6 +37,10 @@ section __DATA,__data
 
 section __TEXT,__text
 _ft_list_push_front:
+	push rbp					; push rbp (base pointer) so that it can be returned at the end of stack frame (setting up stack frame)
+	mov rbp, rsp				; move rsp to rbp (stack pointer) the current stack position to rbp which is the base of the stack
+	sub rsp, 16					; grows the stack by 16 bytes for any variables being used
+
 	mov r13, rdi				; move the start of the list to r13
 	mov r14, rsi				; move the data pointer to r14
 
@@ -65,4 +69,6 @@ empty_list:
 	jmp return					; jump to return
 
 return:
+	add rsp, 16					; lowers the stack by 16 bytes for any variables that were used
+	pop rbp						; pop rbp pack so that it is back at the start of the stack frame
 	ret							; return to function call
