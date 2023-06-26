@@ -37,9 +37,11 @@ int main()
 	t_list	*start = ft_list_new(&arr[0]);
 	int temp = 3;
 
-	for (int i = 1; i < temp; i++) {
+	printf("size = %d\n", ft_list_size(start));
+	for (int i = 1; i < SIZE; i++) {
 		ft_list_push_front(&start, &arr[i]);
 		printf("%d\n", (*(int*)start->data));
+		printf("size = %d\n", ft_list_size(start));
 	}
 
 	t_list *it = start;
@@ -51,8 +53,6 @@ int main()
 		printf("===============\n");
 		it = it->next;
 	}
-	
-	printf("%d\n", ft_list_size(start));
 
 	return 0;
 }

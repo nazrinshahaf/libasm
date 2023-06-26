@@ -31,6 +31,10 @@ section __DATA,__data
 
 section __TEXT,__text
 _ft_list_size:
+	push rbp					; push rbp (base pointer) so that it can be returned at the end of stack frame (setting up stack frame)
+	mov rbp, rsp				; move rsp to rbp (stack pointer) the current stack position to rbp which is the base of the stack
+	sub rsp, 16					; grows the stack by 16 bytes for any variables being used
+
 	mov r14, 0					; initialize length of counter to 0
 	mov r15, rdi				; move the start of the list to r15
 
@@ -40,8 +44,12 @@ list_size_loop:
 	
 	mov qword r15, [r15 + 8]	; move next to r15
 	inc r14						; inc length of list
-	jmp list_size_loop					; jump back to list_size_loop
+	jmp list_size_loop			; jump back to list_size_loop
 
 return:
- 	mov r14, rax				; move r14 to rax for return value
+ 	mov rax, r14				; move r14 to rax for return value
+
+	add rsp, 16					; lowers the stack by 16 bytes for any variables that were used
+	pop rbp						; pop rbp pack so that it is back at the start of the stack frame
+
 	ret							; return to function call
