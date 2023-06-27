@@ -1,7 +1,5 @@
 global _ft_list_sort
 
-extern _free
-
 ; extern void	ft_list_sort(t_list **begin_list, int (*cmp)())
 
 ; void	ft_list_sort(t_list **begin_list, int (*cmp)())
@@ -81,7 +79,7 @@ ft_list_inner_loop:
 
 inc_inner_loop:
 	mov r12, [r12 + 8]			; set b = b->next
-	jmp ft_list_inner_loop
+	jmp ft_list_inner_loop		; jump back to inner loop
 
 swap:
 	; data = b->data | step 1
@@ -89,16 +87,20 @@ swap:
 	; b->next->data = data | step 3
 
 	; r12 b
-	; r11 b->data
 	; rax b->next
 	mov r11, [r12]				; store r12(b->data) to r11 | step 1
 	mov rax, [r12 + 8]			; move r12(b->next) to rax
 
 	; r10 b->next->data
+	; b->data = b->next->data | step 2
+	; [r12], r10
 	mov r10, [rax]				; move r10(b->next->data) to r10
 	mov [r12], r10				; set b->data to b->next->data | step 2
 
 	; rax b->next
+	; r11 b->data
+	; b->next->data = data | step 3
+	; [rax] = r11
 	mov rax, [r12 + 8]			; move b->next->data to rax
 	mov [rax], r11				; set b->next->data to r11 | step 3
 
