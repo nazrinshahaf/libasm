@@ -120,7 +120,7 @@ void test_ft_strlen()
 			printf("✅");
 		printf("] \n\n");
 	}
-#undef ARR_SIZE
+#undef SIZE 
 }
 
 void test_ft_strcpy()
