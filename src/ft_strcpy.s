@@ -25,8 +25,8 @@ ft_strcpy_loop:
 	jmp ft_strcpy_loop			; jump to loop_start
 
 return:
-	mov byte [rdi], 0x0			; set src termination character to null
-	mov r8, rax					; set r8 (originally stores dst) to the return value of function call
+	mov byte [r8], 0x0			; set src termination character to null
+	mov rax, r8					; set r8 (originally stores dst) to the return value of function call
 
 	ret							; return to function call
 
